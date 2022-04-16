@@ -5,21 +5,26 @@ if(NOT cppwinrt_nuget_POPULATED)
 endif()
 
 # setup module infra
-message(STATUS "Fetching cmake module tool")
-include(FetchContent)
-FetchContent_Declare(cmake_cxx_modules
-  GIT_REPOSITORY https://github.com/cpp-openapi/CMakeCxxModules.git
-  GIT_TAG b2a646229cff3c9f0ce85f10648d4c57de2b2411)
-FetchContent_GetProperties(cmake_cxx_modules)
-if(NOT cmake_cxx_modules_POPULATED)
-    FetchContent_Populate(cmake_cxx_modules)
-    list(APPEND CMAKE_MODULE_PATH ${cmake_cxx_modules_SOURCE_DIR})
-    include(CXXModules)
-endif()
+# message(STATUS "Fetching cmake module tool")
+# include(FetchContent)
+# FetchContent_Declare(cmake_cxx_modules
+#   GIT_REPOSITORY https://github.com/cpp-openapi/CMakeCxxModules.git
+#   GIT_TAG b2a646229cff3c9f0ce85f10648d4c57de2b2411)
+# FetchContent_GetProperties(cmake_cxx_modules)
+# if(NOT cmake_cxx_modules_POPULATED)
+#     FetchContent_Populate(cmake_cxx_modules)
+#     list(APPEND CMAKE_MODULE_PATH ${cmake_cxx_modules_SOURCE_DIR})
+#     include(CXXModules)
+# endif()
 
-add_compile_options(/bigobj)
-add_module_library(cppwinrt_module
+add_library(cppwinrt_module
     ${cppwinrt_nuget_BINARY_DIR}/include/winrt/winrt.ixx 
+)
+
+target_compile_options(cppwinrt_module
+    PUBLIC /experimental:module
+    PUBLIC /std:c++latest
+    PRIVATE /bigobj
 )
 
 target_include_directories(cppwinrt_module PUBLIC "${cppwinrt_nuget_BINARY_DIR}/include")
