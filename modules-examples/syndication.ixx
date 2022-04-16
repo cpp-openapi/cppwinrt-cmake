@@ -1,10 +1,10 @@
 
 // #include <winrt/Windows.Foundation.Collections.h>
 // #include <winrt/Windows.Web.Syndication.h>
-#include <iostream>
+// #include <iostream>
 
 // this will crash the msvc compiler. not stable.
-// import std.core;
+import std.core;
 import winrt;
 
 using namespace winrt;
