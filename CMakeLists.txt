@@ -9,6 +9,7 @@ if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
 endif()
 
 option(OPENAPI_BuildExamples  "Build examples"                                      ${OPENAPI_MAIN_PROJECT})
+option(OPENAPI_UseCXXModules  "Use CXX modules"                                      ${OPENAPI_MAIN_PROJECT})
 
 if(NOT WIN32)
     message(FATAL_ERROR "Only Windows is supported.")
@@ -40,4 +41,9 @@ target_include_directories(cppwinrt INTERFACE "${cppwinrt_nuget_BINARY_DIR}/incl
 
 if(OPENAPI_BuildExamples)
     add_subdirectory(examples)
+endif()
+
+if(OPENAPI_UseCXXModules)
+    add_subdirectory(modules)
+    add_subdirectory(modules-examples)
 endif()
