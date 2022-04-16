@@ -27,4 +27,4 @@ target_compile_options(cppwinrt_module
     PRIVATE /bigobj
 )
 
-target_include_directories(cppwinrt_module PUBLIC "${cppwinrt_nuget_BINARY_DIR}/include")
+target_include_directories(cppwinrt_module PRIVATE "${cppwinrt_nuget_BINARY_DIR}/include")

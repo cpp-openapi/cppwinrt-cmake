@@ -3,6 +3,7 @@
 // #include <winrt/Windows.Web.Syndication.h>
 #include <iostream>
 
+//import std.core;
 import winrt;
 
 using namespace winrt;
